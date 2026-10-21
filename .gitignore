@@ -1,0 +1,7 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+.venv/
+# Run outputs are big and reproducible; only the sweep summary tables are kept.
+results/*
+!results/summaries/

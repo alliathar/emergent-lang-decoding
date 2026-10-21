@@ -1,0 +1,4 @@
+# Normalise line endings so Windows and macOS/Linux teammates don't get whole-file diffs.
+* text=auto
+*.png binary
+*.pt binary

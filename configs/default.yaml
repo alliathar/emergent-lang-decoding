@@ -1,0 +1,14 @@
+# Small CPU run: the Level 1 default game (V=10, L=3, K=4, random distractors, gumbel).
+# Any key from DEFAULT_CONFIG in train.py can be set here; the command line overrides this file.
+seed: 0
+data_seed: 0
+mode: gumbel
+vocab_size: 10
+msg_len: 3
+n_candidates: 4
+hard_distractors: false
+temperature: 2.0
+epochs: 12
+steps_per_epoch: 100
+batch_size: 128
+lr: 0.001

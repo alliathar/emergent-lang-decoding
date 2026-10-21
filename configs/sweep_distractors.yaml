@@ -1,0 +1,7 @@
+# Does a harder game (more candidates, similar distractors) force a more precise language?
+name: distractors
+base: configs/default.yaml
+seeds: [0, 1, 2]
+grid:
+  n_candidates: [2, 4, 8]
+  hard_distractors: [false, true]

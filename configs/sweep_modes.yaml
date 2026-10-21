@@ -1,0 +1,9 @@
+# Gumbel-softmax vs REINFORCE, plus the no-communication baseline.
+# `grid` runs every combination; `runs` adds extra one-off override sets. Both run once per seed.
+name: modes
+base: configs/default.yaml
+seeds: [0, 1, 2]
+grid:
+  mode: [gumbel, reinforce]
+runs:
+  - {no_comm: true}

@@ -1,0 +1,8 @@
+# How do vocabulary size V and message length L shape the language?
+# Every combination of the `grid` values is run once per seed, on top of `base`.
+name: vocab_len
+base: configs/default.yaml
+seeds: [0, 1, 2]
+grid:
+  vocab_size: [5, 10, 20]
+  msg_len: [2, 3, 4]

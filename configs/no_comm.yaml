@@ -1,0 +1,4 @@
+# Baseline: the listener is trained with one constant message, so it cannot know the target.
+# Its accuracy shows what is achievable *without* communication (should be ~chance).
+no_comm: true
+epochs: 10

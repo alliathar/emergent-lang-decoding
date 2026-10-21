@@ -1,0 +1,5 @@
+# Same game as default.yaml, but the speaker learns with REINFORCE instead of Gumbel-softmax.
+mode: reinforce
+entropy_coef: 0.01
+baseline_decay: 0.99
+epochs: 20
