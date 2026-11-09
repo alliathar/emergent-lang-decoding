@@ -151,14 +151,21 @@ def split_combinations(holdout_frac: float, seed: int) -> tuple[list[tuple[int, 
 
 @dataclass
 class ShapeSplit:
-    """A fixed pool of images (uint8, N x 3 x 64 x 64) and their attribute indices (N x 4)."""
+    """A fixed pool of images (uint8, N x 3 x 64 x 64) and their attribute indices (N x 4).
+
+    By default any image can be a target or a distractor. `target_idx` / `distractor_idx`
+    restrict that (see `cross_split`, which uses them to mix two splits in one game).
+    """
 
     name: str
     images: torch.Tensor
     attrs: np.ndarray
+    target_idx: np.ndarray | None = None
+    distractor_idx: np.ndarray | None = None
     combo_ids: np.ndarray = field(init=False)
     _by_combo: dict[int, np.ndarray] = field(init=False, repr=False)
     _hard_pool: dict[int, np.ndarray] = field(init=False, repr=False)
+    _distractor_ok: np.ndarray = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
         # Encode each attribute vector as one integer so "same combination?" is a cheap comparison.
@@ -166,6 +173,10 @@ class ShapeSplit:
         self.combo_ids = np.ravel_multi_index(self.attrs.T, sizes)
         self._by_combo = {int(c): np.flatnonzero(self.combo_ids == c) for c in np.unique(self.combo_ids)}
         self._hard_pool = {}
+        self._distractor_ok = np.ones(len(self.attrs), dtype=bool)
+        if self.distractor_idx is not None:
+            self._distractor_ok[:] = False
+            self._distractor_ok[self.distractor_idx] = True
 
     def __len__(self) -> int:
         return len(self.attrs)
@@ -187,7 +198,8 @@ class ShapeSplit:
             sizes = [len(v) for v in ATTRIBUTES.values()]
             target = np.array(np.unravel_index(combo_id, sizes))
             shared = (self.attrs == target).sum(axis=1)
-            self._hard_pool[combo_id] = np.flatnonzero((shared >= 2) & (self.combo_ids != combo_id))
+            ok = (shared >= 2) & (self.combo_ids != combo_id) & self._distractor_ok
+            self._hard_pool[combo_id] = np.flatnonzero(ok)
         return self._hard_pool[combo_id]
 
     def sample_games(
@@ -203,7 +215,10 @@ class ShapeSplit:
         such a game would only be solvable by reading jitter, which is not what
         we want the language to describe.
         """
-        targets = rng.integers(0, len(self), size=batch_size)
+        if self.target_idx is None:
+            targets = rng.integers(0, len(self), size=batch_size)
+        else:
+            targets = rng.choice(self.target_idx, size=batch_size)
         if hard:
             distractors = np.stack([self._hard_distractors(int(self.combo_ids[t]), n_candidates - 1, rng) for t in targets])
         else:
@@ -218,11 +233,16 @@ class ShapeSplit:
     def _random_distractors(self, targets: np.ndarray, n: int, rng: np.random.Generator) -> np.ndarray:
         if len(self._by_combo) < 2:
             raise ValueError(f"split {self.name!r} has a single combination; no valid distractors")
-        out = rng.integers(0, len(self), size=(len(targets), n))
+        def draw(size: int | tuple[int, int]) -> np.ndarray:
+            if self.distractor_idx is None:
+                return rng.integers(0, len(self), size=size)
+            return rng.choice(self.distractor_idx, size=size)
+
+        out = draw((len(targets), n))
         # Rejection sampling: redraw any distractor that matches its target's combination.
         bad = self.combo_ids[out] == self.combo_ids[targets][:, None]
         while bad.any():
-            out[bad] = rng.integers(0, len(self), size=int(bad.sum()))
+            out[bad] = draw(int(bad.sum()))
             bad = self.combo_ids[out] == self.combo_ids[targets][:, None]
         return out
 
@@ -231,6 +251,24 @@ class ShapeSplit:
         if len(pool) == 0:
             raise ValueError(f"no hard distractors for combination {combo_id} in split {self.name!r}")
         return rng.choice(pool, size=n, replace=len(pool) < n)
+
+
+def cross_split(name: str, target_split: ShapeSplit, distractor_split: ShapeSplit) -> ShapeSplit:
+    """A split whose games take targets from one split and distractors from another.
+
+    Why: the held-out split only contains the 4 held-out (shape, colour) pairs, so its
+    own games use held-out distractors only. That is an easier game than the test one
+    (fewer look-alikes to rule out). Taking held-out targets with *test* distractors puts
+    held-out and test accuracy on the same footing. Both splits must be on the same device.
+    """
+    n = len(distractor_split)
+    return ShapeSplit(
+        name=name,
+        images=torch.cat([distractor_split.images, target_split.images]),
+        attrs=np.concatenate([distractor_split.attrs, target_split.attrs]),
+        target_idx=np.arange(n, n + len(target_split)),
+        distractor_idx=np.arange(n),
+    )
 
 
 def generate_split(

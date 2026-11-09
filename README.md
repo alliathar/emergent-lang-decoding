@@ -59,3 +59,6 @@ Sweeps write `results/summaries/<name>.csv` (one row per run) and `<name>_agg.cs
   (each image has a random sub-pixel position jitter).
 - **heldout** contains only the 4 (shape, colour) pairs (20%) that never appear in training,
   e.g. "red square". It tests whether the language generalises to new combinations.
+- **heldout_vs_test** (accuracy metrics only in `final.json`): held-out targets with distractors
+  from the test split. The `heldout` games only use held-out distractors, which is an easier game,
+  so use this one when comparing against test accuracy.

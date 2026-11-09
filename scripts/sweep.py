@@ -4,6 +4,7 @@ Usage:
     python scripts/sweep.py configs/sweep_vocab_len.yaml
     python scripts/sweep.py configs/sweep_vocab_len.yaml --dry_run          # list runs only
     python scripts/sweep.py configs/sweep_vocab_len.yaml --set epochs=5     # override for every run
+    python scripts/sweep.py configs/sweep_vocab_len.yaml --seeds 1          # only seed 1
 
 A sweep YAML has:
     name:  used for the output folder results/<name>/ and the summary file names
@@ -67,9 +68,14 @@ def main() -> None:
     parser.add_argument("sweep", type=Path)
     parser.add_argument("--set", nargs="*", default=[], help="key=value overrides applied to every run")
     parser.add_argument("--dry_run", action="store_true")
+    parser.add_argument("--seeds", type=int, nargs="+", default=None,
+                        help="run only these seeds (e.g. one process per seed, in parallel); "
+                             "re-run without it afterwards to write the full summary")
     args = parser.parse_args()
 
     sweep = yaml.safe_load(args.sweep.read_text())
+    if args.seeds is not None:
+        sweep["seeds"] = args.seeds
     extra = parse_set(args.set)
     all_overrides = expand(sweep)
     configs = [run_config(sweep, overrides, extra) for overrides in all_overrides]
@@ -106,9 +112,9 @@ def flatten(config: dict[str, Any], final: dict[str, Any], varied: set[str]) -> 
     """One summary row: the settings that matter + every split metric as e.g. test_acc, heldout_topsim."""
     keys = sorted(NAMED_KEYS | varied)
     row: dict[str, Any] = {"run_name": config["run_name"], **{k: config[k] for k in keys}, "chance": final["chance"]}
-    for split in ("test", "heldout"):
+    for split in train.EVAL_SPLITS:
         for metric in METRIC_COLUMNS:
-            if split in final:
+            if metric in final.get(split, {}):
                 row[f"{split}_{metric}"] = final[split][metric]
     row["train_time_sec"] = final["train_time_sec"]
     return row

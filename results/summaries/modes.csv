@@ -1,0 +1,10 @@
+run_name,hard_distractors,mode,msg_len,n_candidates,no_comm,seed,vocab_size,chance,test_acc,test_acc_random_msg,test_acc_fixed_msg,test_topsim,test_n_unique_messages,heldout_acc,heldout_acc_random_msg,heldout_acc_fixed_msg,heldout_topsim,heldout_n_unique_messages,heldout_vs_test_acc,heldout_vs_test_acc_random_msg,heldout_vs_test_acc_fixed_msg,train_time_sec
+gumbel_V10_L3_K4_random_s0,False,gumbel,3,4,False,0,10,0.25,0.944,0.232,0.229,0.3757044306590586,154,0.975,0.279,0.275,0.33098432036549114,122,0.942,0.283,0.314,755.1
+gumbel_V10_L3_K4_random_s1,False,gumbel,3,4,False,1,10,0.25,0.938,0.235,0.251,0.22315267263682545,149,0.973,0.272,0.268,0.17502450635324185,120,0.934,0.279,0.26,755.2
+gumbel_V10_L3_K4_random_s2,False,gumbel,3,4,False,2,10,0.25,0.883,0.246,0.275,0.34532425106558234,34,0.903,0.261,0.257,0.3881164827477289,32,0.88,0.26,0.272,754.9
+reinforce_V10_L3_K4_random_s0,False,reinforce,3,4,False,0,10,0.25,0.699,0.228,0.269,0.5095071852734073,6,0.703,0.271,0.259,0.43689033634516533,5,0.658,0.249,0.269,721.6
+reinforce_V10_L3_K4_random_s1,False,reinforce,3,4,False,1,10,0.25,0.602,0.245,0.239,0.5090741576200686,3,0.625,0.259,0.273,0.43546042416612313,3,0.544,0.254,0.245,724.1
+reinforce_V10_L3_K4_random_s2,False,reinforce,3,4,False,2,10,0.25,0.699,0.266,0.272,0.3898144166773872,4,0.644,0.258,0.271,0.382059582993793,3,0.715,0.152,0.099,721.7
+gumbel_V10_L3_K4_random_s0_nocomm,False,gumbel,3,4,True,0,10,0.25,0.243,0.264,0.243,0.0,1,0.245,0.254,0.245,0.0,1,0.233,0.287,0.233,561.4
+gumbel_V10_L3_K4_random_s1_nocomm,False,gumbel,3,4,True,1,10,0.25,0.245,0.252,0.245,0.0,1,0.249,0.249,0.249,0.0,1,0.296,0.249,0.296,560.8
+gumbel_V10_L3_K4_random_s2_nocomm,False,gumbel,3,4,True,2,10,0.25,0.255,0.262,0.255,0.0,1,0.253,0.242,0.253,0.0,1,0.226,0.193,0.226,558.5

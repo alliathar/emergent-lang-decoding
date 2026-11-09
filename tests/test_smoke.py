@@ -26,6 +26,7 @@ def test_smoke_run_beats_chance():
                  "test/examples.png", "test/symbol_attribute_mi.csv", "heldout/symbol_table.csv"]:
         assert (out_dir / name).exists(), name
     assert json.loads((out_dir / "final.json").read_text())["test"]["acc"] == final["test"]["acc"]
+    assert 0.0 <= final["heldout_vs_test"]["acc"] <= 1.0
     # Chance is 0.25 with K=4; even this short run should be well above it.
     assert final["test"]["acc"] > final["chance"] + 0.15
     shutil.rmtree(train.PROJECT_ROOT / config["results_dir"], ignore_errors=True)

@@ -23,12 +23,14 @@ import torch
 import torch.nn.functional as F
 import yaml
 
-from data.shapes import ATTRIBUTE_NAMES, ShapeSplit, attrs_to_dict, build_splits
+from data.shapes import ATTRIBUTE_NAMES, ShapeSplit, attrs_to_dict, build_splits, cross_split
 from eval import metrics, plots
 from models.listener import Listener
 from models.speaker import Speaker
 
 PROJECT_ROOT = Path(__file__).resolve().parent
+# Keys of final.json that hold per-split metrics. heldout_vs_test has accuracy metrics only.
+EVAL_SPLITS = ("test", "heldout", "heldout_vs_test")
 
 DEFAULT_CONFIG: dict[str, Any] = {
     "run_name": None,          # None -> built from the main settings, e.g. gumbel_V10_L3_K4_random_s0
@@ -55,8 +57,9 @@ DEFAULT_CONFIG: dict[str, Any] = {
     # training
     "mode": "gumbel",          # gumbel | reinforce
     "temperature": 2.0,        # Gumbel-softmax temperature (1.0 collapsed to a few position-only messages)
-    "entropy_coef": 0.01,      # REINFORCE entropy bonus (keeps the speaker exploring)
-    "baseline_decay": 0.99,    # REINFORCE running-mean baseline: b <- d*b + (1-d)*reward
+    # REINFORCE only. Tuned on seed 0: 0.01 / 0.99 collapsed to 2 messages (~0.45 acc).
+    "entropy_coef": 0.001,     # entropy bonus (keeps the speaker exploring)
+    "baseline_decay": 0.9,     # running-mean baseline: b <- d*b + (1-d)*reward
     "lr": 0.001,
     "batch_size": 128,
     "epochs": 12,
@@ -230,20 +233,27 @@ def message_to_str(symbols: np.ndarray) -> str:
     return "-".join(str(int(s)) for s in symbols)
 
 
+def evaluate_accuracy(
+    speaker: Speaker, listener: Listener, split: ShapeSplit, config: dict[str, Any]
+) -> dict[str, float]:
+    """Accuracy with the real message, plus the two ablations, on a fixed set of eval games."""
+    games = split.sample_games(config["eval_games"], config["n_candidates"], config["hard_distractors"],
+                               np.random.default_rng(config["data_seed"] + 2))
+    main_mode = "fixed" if config["no_comm"] else "speaker"
+    return {
+        "acc": metrics.play(speaker, listener, split, *games, message_mode=main_mode)["acc"],
+        "acc_random_msg": metrics.play(speaker, listener, split, *games, message_mode="random")["acc"],
+        "acc_fixed_msg": metrics.play(speaker, listener, split, *games, message_mode="fixed")["acc"],
+    }
+
+
 def evaluate_split(
     speaker: Speaker, listener: Listener, split: ShapeSplit, config: dict[str, Any], out_dir: Path
 ) -> dict[str, float]:
     """All report metrics for one split; tables and plots are written to out_dir/<split name>/."""
     split_dir = out_dir / split.name
     split_dir.mkdir(parents=True, exist_ok=True)
-    games = split.sample_games(config["eval_games"], config["n_candidates"], config["hard_distractors"],
-                               np.random.default_rng(config["data_seed"] + 2))
-    main_mode = "fixed" if config["no_comm"] else "speaker"
-    result = {
-        "acc": metrics.play(speaker, listener, split, *games, message_mode=main_mode)["acc"],
-        "acc_random_msg": metrics.play(speaker, listener, split, *games, message_mode="random")["acc"],
-        "acc_fixed_msg": metrics.play(speaker, listener, split, *games, message_mode="fixed")["acc"],
-    }
+    result = evaluate_accuracy(speaker, listener, split, config)
 
     if config["no_comm"]:
         messages = np.zeros((len(split), config["msg_len"]), dtype=np.int64)
@@ -305,8 +315,12 @@ def run(config: dict[str, Any]) -> dict[str, Any]:
     for name in ("test", "heldout"):
         if name in splits:
             final[name] = evaluate_split(speaker, listener, splits[name], config, out_dir)
+    if "test" in splits and "heldout" in splits:
+        # Held-out targets against the same distractor pool as test, so the two are comparable.
+        mixed = cross_split("heldout_vs_test", splits["heldout"], splits["test"])
+        final["heldout_vs_test"] = evaluate_accuracy(speaker, listener, mixed, config)
     (out_dir / "final.json").write_text(json.dumps(final, indent=2))
-    print(json.dumps({k: final[k] for k in ("test", "heldout") if k in final}, indent=2), flush=True)
+    print(json.dumps({k: final[k] for k in EVAL_SPLITS if k in final}, indent=2), flush=True)
     return final
 
 

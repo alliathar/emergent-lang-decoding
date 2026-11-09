@@ -1,7 +1,8 @@
 import numpy as np
 import torch
 
-from data.shapes import ATTRIBUTES, all_combinations, build_splits, make_sample, split_combinations
+from data.shapes import (ATTRIBUTES, all_combinations, build_splits, cross_split, make_sample,
+                         split_combinations)
 
 SMALL = dict(n_train=300, n_val=50, n_test=100, n_heldout=100)
 
@@ -64,3 +65,18 @@ def test_distractors():
     # The target lands in every column at some point.
     _, pos = split.sample_games(500, 4, False, rng)
     assert set(pos) == {0, 1, 2, 3}
+
+
+def test_cross_split_targets_and_distractors_come_from_the_right_splits():
+    splits = build_splits(seed=0, **SMALL)
+    mixed = cross_split("mixed", splits["heldout"], splits["test"])
+    n_test = len(splits["test"])
+    rng = np.random.default_rng(0)
+    for hard in (False, True):
+        cand, pos = mixed.sample_games(200, 4, hard, rng)
+        rows = np.arange(len(cand))
+        assert (cand[rows, pos] >= n_test).all()  # every target is a held-out image
+        others = cand[np.arange(4)[None, :] != pos[:, None]]
+        assert (others < n_test).all()  # every distractor is a test image
+    # The images are carried over unchanged.
+    assert torch.equal(mixed.images[n_test:], splits["heldout"].images)
