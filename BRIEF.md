@@ -1,4 +1,4 @@
-# CLAUDE.md — Emergent Language Referential Game (Level 1)
+# BRIEF.md — Emergent Language Referential Game (Level 1)
 
 ## Project context
 CS/CE 351 AI course project (Fall 2026), two-person team. We study whether two neural agents
