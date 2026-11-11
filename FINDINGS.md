@@ -1,8 +1,8 @@
 # Level 1 findings so far
 
-Status as of 9 Nov 2026. Headline numbers are **mean ± std over 3 training seeds** (0, 1, 2) on one
+Headline numbers are **mean ± std over 3 training seeds** (0, 1, 2) on one
 dataset (`data_seed` 0), all on a laptop CPU. Setup and commands are in [README.md](README.md);
-the spec is in [CLAUDE.md](CLAUDE.md). Per-run tables: `results/summaries/modes*.csv` and
+the spec is in [BRIEF.md](BRIEF.md). Per-run tables: `results/summaries/modes*.csv` and
 `results/summaries/distractors*.csv`.
 
 ## TL;DR
