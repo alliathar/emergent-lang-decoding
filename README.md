@@ -1,10 +1,10 @@
 # Emergent Language Referential Game — Level 1 (synthetic shapes)
 
-Two neural agents, a **speaker** and a **listener**, each with their own CNN trained from
+In this level, we have two neural agents, a **speaker** and a **listener**, each with their own CNN trained from
 scratch, play a referential game. The speaker sees a target image and sends a message of
 `L` symbols from a vocabulary of `V`. The listener reads the message, looks at `K` candidate
 images and must pick the target. We study the "language" they invent. The full spec is in
-[CLAUDE.md](CLAUDE.md).
+[BRIEF.md](BRIEF.md).
 
 ## Setup
 

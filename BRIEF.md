@@ -1,11 +1,10 @@
-# CLAUDE.md — Emergent Language Referential Game (Level 1)
+# BRIEF.md — Emergent Language Referential Game (Level 1)
 
 ## Project context
-CS/CE 351 AI course project (Fall 2026), two-person team. We study whether two neural agents
-invent a shared "language" to identify images, and how that language changes as images get
-more realistic. This repo is **Level 1: simple synthetic shapes, agents learn to see from scratch.**
+We study whether two neural agents invent a shared "language" to identify images, and how that language changes as images get
+more realistic. This repository uses simple synthetic shapes, agents learn to see from scratch.
 
-Key papers (implement our own version, do NOT copy code from EGG or paper repos):
+Key papers:
 - Lazaridou et al. 2017 — referential game, single symbol (arXiv 1612.07182)
 - Havrylov & Titov 2017 — sequences of symbols, Gumbel-softmax (arXiv 1705.11192)
 - Lazaridou et al. 2018 — raw pixel input, structure → compositionality (arXiv 1804.03984)
@@ -14,12 +13,12 @@ Key papers (implement our own version, do NOT copy code from EGG or paper repos)
 - **From scratch in PyTorch.** No pretrained models in Level 1. No high-level emergent-comm libraries.
 - **Must run on a laptop CPU** for small configs (a run should finish in < 15 min on CPU).
   GPU (Kaggle T4) is optional for full sweeps; code must auto-detect `cuda` and fall back to `cpu`.
-- **Windows-friendly.** Use `pathlib`, no shell-specific scripts, `num_workers=0` by default.
+- **Windows-friendly.** Used `pathlib`, no shell-specific scripts, `num_workers=0` by default.
 - Zero cost: no paid APIs or services.
 - Reproducible: every run takes a `--seed`; seed Python, NumPy and torch.
 
-## The game (one round)
-1. Sample K candidate images (default K=4); one is the target.
+## A single round of the game looks like this:
+1. Sample K candidate images (default K=4) where one is the target.
 2. **Speaker** sees only the target → emits a message: sequence of length L (default 3)
    of integer symbols from vocab size V (default 10). Symbols start meaningless.
 3. **Listener** sees the message + all K candidates (shuffled) → picks one.
@@ -27,18 +26,18 @@ Key papers (implement our own version, do NOT copy code from EGG or paper repos)
 
 ## Dataset: generated shapes (`data/shapes.py`)
 Generate images procedurally so we know the true attributes of every image.
-- 64×64 RGB, plain black background.
+- The images are 64×64 RGB with a plain black background.
 - Attributes: shape {circle, square, triangle, cross}, colour {red, green, blue, yellow, magenta},
   size {small, large}, position {left, centre, right} (small jitter allowed).
 - Return `(image_tensor, attribute_dict)`; generation must be deterministic given a seed.
 - **Held-out split:** hold out ~20% of attribute *combinations* (e.g. never train on
-  "blue triangle"), to test whether the language generalises to new combinations.
+  "blue triangle"), to test whether the language generalises to new combinations i.e. to be able to test compositionality.
 - Distractors: random by default; add an option for "hard" distractors that share 2+ attributes
   with the target.
 
 ## Models (`models/`)
 - `vision.py` — small CNN encoder (3–4 conv layers → vector of size 128). Speaker and listener
-  each have **their own** encoder (no weight sharing; they must not share a brain).
+  each have **their own** encoder (no weight sharing).
 - `speaker.py` — CNN vector → GRU that emits L symbols. Support two training modes:
   - `gumbel` (default): straight-through Gumbel-softmax (Havrylov & Titov). Discrete forward,
     differentiable backward. Temperature is a config value.
@@ -94,9 +93,3 @@ results/               outputs (git-ignored except summary tables)
 4. `reinforce` mode.
 5. Sweep script + summary table.
 
-## Style
-- Python 3.11+, type hints, small functions, docstrings explaining the *why* (this code is also a
-  learning resource for the report). Comments in plain language.
-- Keep dependencies minimal: torch, torchvision (transforms only), numpy, scipy, pyyaml,
-  matplotlib, pandas, pytest.
-- Don't add features beyond this spec without asking.
