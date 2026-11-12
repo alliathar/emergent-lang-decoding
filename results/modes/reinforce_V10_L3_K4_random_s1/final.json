@@ -1,0 +1,32 @@
+{
+  "run_name": "reinforce_V10_L3_K4_random_s1",
+  "chance": 0.25,
+  "train_time_sec": 724.1,
+  "final_train_acc": 0.610234375,
+  "final_val_acc": 0.611,
+  "attributes": [
+    "shape",
+    "colour",
+    "size",
+    "position"
+  ],
+  "test": {
+    "acc": 0.602,
+    "acc_random_msg": 0.245,
+    "acc_fixed_msg": 0.239,
+    "topsim": 0.5090741576200686,
+    "n_unique_messages": 3
+  },
+  "heldout": {
+    "acc": 0.625,
+    "acc_random_msg": 0.259,
+    "acc_fixed_msg": 0.273,
+    "topsim": 0.43546042416612313,
+    "n_unique_messages": 3
+  },
+  "heldout_vs_test": {
+    "acc": 0.544,
+    "acc_random_msg": 0.254,
+    "acc_fixed_msg": 0.245
+  }
+}

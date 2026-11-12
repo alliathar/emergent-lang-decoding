@@ -1,0 +1,333 @@
+sweep modes: 3 runs
+[1/3] run gumbel_V10_L3_K4_random_s0
+run gumbel_V10_L3_K4_random_s0 on cpu
+epoch   1 | train acc 0.524 loss 0.888 | val acc 0.660 | entropy 1.47 | 58s
+epoch   2 | train acc 0.784 loss 0.412 | val acc 0.841 | entropy 0.89 | 113s
+epoch   3 | train acc 0.833 loss 0.314 | val acc 0.865 | entropy 0.78 | 170s
+epoch   4 | train acc 0.865 loss 0.270 | val acc 0.858 | entropy 0.78 | 247s
+epoch   5 | train acc 0.887 loss 0.229 | val acc 0.839 | entropy 0.71 | 319s
+epoch   6 | train acc 0.897 loss 0.208 | val acc 0.922 | entropy 0.68 | 392s
+epoch   7 | train acc 0.918 loss 0.168 | val acc 0.931 | entropy 0.62 | 464s
+epoch   8 | train acc 0.928 loss 0.144 | val acc 0.938 | entropy 0.59 | 521s
+epoch   9 | train acc 0.929 loss 0.143 | val acc 0.947 | entropy 0.56 | 581s
+epoch  10 | train acc 0.928 loss 0.157 | val acc 0.919 | entropy 0.55 | 640s
+epoch  11 | train acc 0.938 loss 0.125 | val acc 0.950 | entropy 0.54 | 696s
+epoch  12 | train acc 0.934 loss 0.133 | val acc 0.963 | entropy 0.52 | 752s
+{
+  "test": {
+    "acc": 0.944,
+    "acc_random_msg": 0.232,
+    "acc_fixed_msg": 0.229,
+    "topsim": 0.3757044306590586,
+    "n_unique_messages": 154
+  },
+  "heldout": {
+    "acc": 0.975,
+    "acc_random_msg": 0.279,
+    "acc_fixed_msg": 0.275,
+    "topsim": 0.33098432036549114,
+    "n_unique_messages": 122
+  },
+  "heldout_vs_test": {
+    "acc": 0.942,
+    "acc_random_msg": 0.283,
+    "acc_fixed_msg": 0.314
+  }
+}
+[2/3] run reinforce_V10_L3_K4_random_s0
+run reinforce_V10_L3_K4_random_s0 on cpu
+epoch   1 | train acc 0.312 loss 1.287 | val acc 0.444 | entropy 2.01 | 57s
+epoch   2 | train acc 0.579 loss 0.699 | val acc 0.613 | entropy 0.55 | 118s
+epoch   3 | train acc 0.657 loss 0.544 | val acc 0.665 | entropy 0.24 | 183s
+epoch   4 | train acc 0.664 loss 0.524 | val acc 0.663 | entropy 0.09 | 245s
+epoch   5 | train acc 0.679 loss 0.507 | val acc 0.689 | entropy 0.11 | 303s
+epoch   6 | train acc 0.678 loss 0.507 | val acc 0.675 | entropy 0.11 | 363s
+epoch   7 | train acc 0.672 loss 0.502 | val acc 0.669 | entropy 0.09 | 423s
+epoch   8 | train acc 0.682 loss 0.498 | val acc 0.678 | entropy 0.07 | 486s
+epoch   9 | train acc 0.684 loss 0.487 | val acc 0.676 | entropy 0.07 | 548s
+epoch  10 | train acc 0.677 loss 0.495 | val acc 0.668 | entropy 0.07 | 611s
+epoch  11 | train acc 0.681 loss 0.488 | val acc 0.682 | entropy 0.16 | 667s
+epoch  12 | train acc 0.679 loss 0.485 | val acc 0.681 | entropy 0.12 | 722s
+{
+  "test": {
+    "acc": 0.699,
+    "acc_random_msg": 0.228,
+    "acc_fixed_msg": 0.269,
+    "topsim": 0.5095071852734073,
+    "n_unique_messages": 6
+  },
+  "heldout": {
+    "acc": 0.703,
+    "acc_random_msg": 0.271,
+    "acc_fixed_msg": 0.259,
+    "topsim": 0.43689033634516533,
+    "n_unique_messages": 5
+  },
+  "heldout_vs_test": {
+    "acc": 0.658,
+    "acc_random_msg": 0.249,
+    "acc_fixed_msg": 0.269
+  }
+}
+[3/3] run gumbel_V10_L3_K4_random_s0_nocomm
+run gumbel_V10_L3_K4_random_s0_nocomm on cpu
+epoch   1 | train acc 0.251 loss 1.386 | val acc 0.243 | entropy 0.00 | 43s
+epoch   2 | train acc 0.243 loss 1.386 | val acc 0.251 | entropy 0.00 | 86s
+epoch   3 | train acc 0.246 loss 1.386 | val acc 0.230 | entropy 0.00 | 133s
+epoch   4 | train acc 0.250 loss 1.386 | val acc 0.234 | entropy 0.00 | 181s
+epoch   5 | train acc 0.250 loss 1.386 | val acc 0.261 | entropy 0.00 | 228s
+epoch   6 | train acc 0.250 loss 1.386 | val acc 0.257 | entropy 0.00 | 275s
+epoch   7 | train acc 0.249 loss 1.386 | val acc 0.254 | entropy 0.00 | 322s
+epoch   8 | train acc 0.248 loss 1.386 | val acc 0.266 | entropy 0.00 | 370s
+epoch   9 | train acc 0.248 loss 1.386 | val acc 0.277 | entropy 0.00 | 417s
+epoch  10 | train acc 0.254 loss 1.386 | val acc 0.245 | entropy 0.00 | 464s
+epoch  11 | train acc 0.250 loss 1.386 | val acc 0.261 | entropy 0.00 | 511s
+epoch  12 | train acc 0.247 loss 1.386 | val acc 0.250 | entropy 0.00 | 561s
+{
+  "test": {
+    "acc": 0.243,
+    "acc_random_msg": 0.264,
+    "acc_fixed_msg": 0.243,
+    "topsim": 0.0,
+    "n_unique_messages": 1
+  },
+  "heldout": {
+    "acc": 0.245,
+    "acc_random_msg": 0.254,
+    "acc_fixed_msg": 0.245,
+    "topsim": 0.0,
+    "n_unique_messages": 1
+  },
+  "heldout_vs_test": {
+    "acc": 0.233,
+    "acc_random_msg": 0.287,
+    "acc_fixed_msg": 0.233
+  }
+}
+ hard_distractors      mode  msg_len  n_candidates  no_comm  vocab_size  n_seeds  test_acc_mean  test_acc_std  test_acc_random_msg_mean  test_acc_random_msg_std  test_acc_fixed_msg_mean  test_acc_fixed_msg_std  test_topsim_mean  test_topsim_std  test_n_unique_messages_mean  test_n_unique_messages_std  heldout_acc_mean  heldout_acc_std  heldout_acc_random_msg_mean  heldout_acc_random_msg_std  heldout_acc_fixed_msg_mean  heldout_acc_fixed_msg_std  heldout_topsim_mean  heldout_topsim_std  heldout_n_unique_messages_mean  heldout_n_unique_messages_std  heldout_vs_test_acc_mean  heldout_vs_test_acc_std  heldout_vs_test_acc_random_msg_mean  heldout_vs_test_acc_random_msg_std  heldout_vs_test_acc_fixed_msg_mean  heldout_vs_test_acc_fixed_msg_std
+            False    gumbel        3             4    False          10        1          0.944           NaN                     0.232                      NaN                    0.229                     NaN            0.3757              NaN                        154.0                         NaN             0.975              NaN                        0.279                         NaN                       0.275                        NaN               0.3310                 NaN                           122.0                            NaN                     0.942                      NaN                                0.283                                 NaN                               0.314                                NaN
+            False    gumbel        3             4     True          10        1          0.243           NaN                     0.264                      NaN                    0.243                     NaN            0.0000              NaN                          1.0                         NaN             0.245              NaN                        0.254                         NaN                       0.245                        NaN               0.0000                 NaN                             1.0                            NaN                     0.233                      NaN                                0.287                                 NaN                               0.233                                NaN
+            False reinforce        3             4    False          10        1          0.699           NaN                     0.228                      NaN                    0.269                     NaN            0.5095              NaN                          6.0                         NaN             0.703              NaN                        0.271                         NaN                       0.259                        NaN               0.4369                 NaN                             5.0                            NaN                     0.658                      NaN                                0.249                                 NaN                               0.269                                NaN
+
+wrote C:\Users\Ali\Desktop\AI Course Project\results\summaries\modes.csv and modes_agg.csv
+sweep distractors: 6 runs
+[1/6] run gumbel_V10_L3_K2_random_s0
+run gumbel_V10_L3_K2_random_s0 on cpu
+epoch   1 | train acc 0.653 loss 0.513 | val acc 0.832 | entropy 1.54 | 39s
+epoch   2 | train acc 0.839 loss 0.237 | val acc 0.844 | entropy 0.61 | 82s
+epoch   3 | train acc 0.872 loss 0.201 | val acc 0.897 | entropy 0.64 | 119s
+epoch   4 | train acc 0.898 loss 0.162 | val acc 0.875 | entropy 0.58 | 153s
+epoch   5 | train acc 0.915 loss 0.144 | val acc 0.919 | entropy 0.47 | 186s
+epoch   6 | train acc 0.925 loss 0.121 | val acc 0.930 | entropy 0.39 | 220s
+epoch   7 | train acc 0.927 loss 0.114 | val acc 0.919 | entropy 0.32 | 253s
+epoch   8 | train acc 0.934 loss 0.109 | val acc 0.912 | entropy 0.28 | 287s
+epoch   9 | train acc 0.934 loss 0.106 | val acc 0.940 | entropy 0.27 | 321s
+epoch  10 | train acc 0.932 loss 0.112 | val acc 0.920 | entropy 0.24 | 354s
+epoch  11 | train acc 0.935 loss 0.111 | val acc 0.928 | entropy 0.26 | 388s
+epoch  12 | train acc 0.938 loss 0.108 | val acc 0.931 | entropy 0.25 | 422s
+{
+  "test": {
+    "acc": 0.945,
+    "acc_random_msg": 0.508,
+    "acc_fixed_msg": 0.481,
+    "topsim": 0.4280672979285823,
+    "n_unique_messages": 25
+  },
+  "heldout": {
+    "acc": 0.957,
+    "acc_random_msg": 0.494,
+    "acc_fixed_msg": 0.494,
+    "topsim": 0.3752462923436158,
+    "n_unique_messages": 24
+  },
+  "heldout_vs_test": {
+    "acc": 0.943,
+    "acc_random_msg": 0.49,
+    "acc_fixed_msg": 0.514
+  }
+}
+[2/6] run gumbel_V10_L3_K2_hard_s0
+run gumbel_V10_L3_K2_hard_s0 on cpu
+epoch   1 | train acc 0.582 loss 0.614 | val acc 0.670 | entropy 1.62 | 32s
+epoch   2 | train acc 0.727 loss 0.439 | val acc 0.788 | entropy 0.66 | 67s
+epoch   3 | train acc 0.834 loss 0.306 | val acc 0.839 | entropy 0.44 | 102s
+epoch   4 | train acc 0.864 loss 0.254 | val acc 0.879 | entropy 0.34 | 137s
+epoch   5 | train acc 0.882 loss 0.220 | val acc 0.900 | entropy 0.30 | 172s
+epoch   6 | train acc 0.889 loss 0.207 | val acc 0.909 | entropy 0.29 | 207s
+epoch   7 | train acc 0.910 loss 0.174 | val acc 0.920 | entropy 0.28 | 242s
+epoch   8 | train acc 0.907 loss 0.178 | val acc 0.922 | entropy 0.26 | 276s
+epoch   9 | train acc 0.907 loss 0.174 | val acc 0.940 | entropy 0.29 | 310s
+epoch  10 | train acc 0.917 loss 0.164 | val acc 0.922 | entropy 0.30 | 343s
+epoch  11 | train acc 0.922 loss 0.149 | val acc 0.934 | entropy 0.29 | 376s
+epoch  12 | train acc 0.923 loss 0.147 | val acc 0.930 | entropy 0.31 | 409s
+{
+  "test": {
+    "acc": 0.905,
+    "acc_random_msg": 0.524,
+    "acc_fixed_msg": 0.521,
+    "topsim": 0.3526361638249361,
+    "n_unique_messages": 37
+  },
+  "heldout": {
+    "acc": 0.945,
+    "acc_random_msg": 0.473,
+    "acc_fixed_msg": 0.482,
+    "topsim": 0.30024670357010286,
+    "n_unique_messages": 36
+  },
+  "heldout_vs_test": {
+    "acc": 0.928,
+    "acc_random_msg": 0.632,
+    "acc_fixed_msg": 0.667
+  }
+}
+[3/6] run gumbel_V10_L3_K4_random_s0
+run gumbel_V10_L3_K4_random_s0 on cpu
+epoch   1 | train acc 0.524 loss 0.888 | val acc 0.660 | entropy 1.47 | 53s
+epoch   2 | train acc 0.784 loss 0.412 | val acc 0.841 | entropy 0.89 | 113s
+epoch   3 | train acc 0.833 loss 0.314 | val acc 0.865 | entropy 0.78 | 171s
+epoch   4 | train acc 0.865 loss 0.270 | val acc 0.858 | entropy 0.78 | 228s
+epoch   5 | train acc 0.887 loss 0.229 | val acc 0.839 | entropy 0.71 | 286s
+epoch   6 | train acc 0.897 loss 0.208 | val acc 0.922 | entropy 0.68 | 357s
+epoch   7 | train acc 0.918 loss 0.168 | val acc 0.931 | entropy 0.62 | 416s
+epoch   8 | train acc 0.928 loss 0.144 | val acc 0.938 | entropy 0.59 | 476s
+epoch   9 | train acc 0.929 loss 0.143 | val acc 0.947 | entropy 0.56 | 532s
+epoch  10 | train acc 0.928 loss 0.157 | val acc 0.919 | entropy 0.55 | 588s
+epoch  11 | train acc 0.938 loss 0.125 | val acc 0.950 | entropy 0.54 | 644s
+epoch  12 | train acc 0.934 loss 0.133 | val acc 0.963 | entropy 0.52 | 700s
+{
+  "test": {
+    "acc": 0.944,
+    "acc_random_msg": 0.232,
+    "acc_fixed_msg": 0.229,
+    "topsim": 0.3757044306590586,
+    "n_unique_messages": 154
+  },
+  "heldout": {
+    "acc": 0.975,
+    "acc_random_msg": 0.279,
+    "acc_fixed_msg": 0.275,
+    "topsim": 0.33098432036549114,
+    "n_unique_messages": 122
+  },
+  "heldout_vs_test": {
+    "acc": 0.942,
+    "acc_random_msg": 0.283,
+    "acc_fixed_msg": 0.314
+  }
+}
+[4/6] run gumbel_V10_L3_K4_hard_s0
+run gumbel_V10_L3_K4_hard_s0 on cpu
+epoch   1 | train acc 0.374 loss 1.136 | val acc 0.530 | entropy 1.28 | 56s
+epoch   2 | train acc 0.602 loss 0.765 | val acc 0.673 | entropy 0.43 | 112s
+epoch   3 | train acc 0.684 loss 0.598 | val acc 0.741 | entropy 0.32 | 168s
+epoch   4 | train acc 0.758 loss 0.483 | val acc 0.768 | entropy 0.30 | 230s
+epoch   5 | train acc 0.782 loss 0.432 | val acc 0.804 | entropy 0.28 | 292s
+epoch   6 | train acc 0.799 loss 0.397 | val acc 0.812 | entropy 0.25 | 361s
+epoch   7 | train acc 0.797 loss 0.397 | val acc 0.836 | entropy 0.24 | 423s
+epoch   8 | train acc 0.812 loss 0.367 | val acc 0.815 | entropy 0.22 | 488s
+epoch   9 | train acc 0.829 loss 0.338 | val acc 0.818 | entropy 0.21 | 555s
+epoch  10 | train acc 0.828 loss 0.333 | val acc 0.855 | entropy 0.21 | 621s
+epoch  11 | train acc 0.836 loss 0.325 | val acc 0.808 | entropy 0.20 | 685s
+epoch  12 | train acc 0.838 loss 0.315 | val acc 0.851 | entropy 0.21 | 744s
+{
+  "test": {
+    "acc": 0.846,
+    "acc_random_msg": 0.24,
+    "acc_fixed_msg": 0.229,
+    "topsim": 0.27213457845262395,
+    "n_unique_messages": 41
+  },
+  "heldout": {
+    "acc": 0.869,
+    "acc_random_msg": 0.239,
+    "acc_fixed_msg": 0.242,
+    "topsim": 0.2762578315561656,
+    "n_unique_messages": 44
+  },
+  "heldout_vs_test": {
+    "acc": 0.844,
+    "acc_random_msg": 0.208,
+    "acc_fixed_msg": 0.196
+  }
+}
+[5/6] run gumbel_V10_L3_K8_random_s0
+run gumbel_V10_L3_K8_random_s0 on cpu
+epoch   1 | train acc 0.301 loss 1.482 | val acc 0.397 | entropy 0.94 | 118s
+epoch   2 | train acc 0.578 loss 0.820 | val acc 0.677 | entropy 0.53 | 230s
+epoch   3 | train acc 0.705 loss 0.568 | val acc 0.778 | entropy 0.38 | 349s
+epoch   4 | train acc 0.761 loss 0.469 | val acc 0.790 | entropy 0.30 | 461s
+epoch   5 | train acc 0.783 loss 0.421 | val acc 0.807 | entropy 0.26 | 571s
+epoch   6 | train acc 0.799 loss 0.378 | val acc 0.826 | entropy 0.22 | 691s
+epoch   7 | train acc 0.818 loss 0.351 | val acc 0.831 | entropy 0.22 | 791s
+epoch   8 | train acc 0.828 loss 0.331 | val acc 0.862 | entropy 0.23 | 892s
+epoch   9 | train acc 0.843 loss 0.303 | val acc 0.831 | entropy 0.23 | 993s
+epoch  10 | train acc 0.845 loss 0.300 | val acc 0.858 | entropy 0.22 | 1094s
+epoch  11 | train acc 0.853 loss 0.287 | val acc 0.892 | entropy 0.22 | 1200s
+epoch  12 | train acc 0.852 loss 0.281 | val acc 0.891 | entropy 0.23 | 1302s
+{
+  "test": {
+    "acc": 0.884,
+    "acc_random_msg": 0.14,
+    "acc_fixed_msg": 0.134,
+    "topsim": 0.4493974861514146,
+    "n_unique_messages": 59
+  },
+  "heldout": {
+    "acc": 0.876,
+    "acc_random_msg": 0.149,
+    "acc_fixed_msg": 0.143,
+    "topsim": 0.42102299562093826,
+    "n_unique_messages": 52
+  },
+  "heldout_vs_test": {
+    "acc": 0.854,
+    "acc_random_msg": 0.133,
+    "acc_fixed_msg": 0.112
+  }
+}
+[6/6] run gumbel_V10_L3_K8_hard_s0
+run gumbel_V10_L3_K8_hard_s0 on cpu
+epoch   1 | train acc 0.149 loss 1.874 | val acc 0.203 | entropy 1.39 | 105s
+epoch   2 | train acc 0.220 loss 1.608 | val acc 0.199 | entropy 0.58 | 259s
+epoch   3 | train acc 0.390 loss 1.275 | val acc 0.556 | entropy 0.60 | 425s
+epoch   4 | train acc 0.553 loss 0.918 | val acc 0.643 | entropy 0.38 | 579s
+epoch   5 | train acc 0.626 loss 0.758 | val acc 0.633 | entropy 0.29 | 730s
+epoch   6 | train acc 0.670 loss 0.658 | val acc 0.686 | entropy 0.28 | 878s
+epoch   7 | train acc 0.680 loss 0.641 | val acc 0.726 | entropy 0.26 | 2651s
+epoch   8 | train acc 0.709 loss 0.582 | val acc 0.728 | entropy 0.27 | 2803s
+epoch   9 | train acc 0.721 loss 0.555 | val acc 0.757 | entropy 0.28 | 2945s
+epoch  10 | train acc 0.714 loss 0.558 | val acc 0.736 | entropy 0.26 | 3062s
+epoch  11 | train acc 0.739 loss 0.517 | val acc 0.751 | entropy 0.25 | 3165s
+epoch  12 | train acc 0.734 loss 0.518 | val acc 0.764 | entropy 0.24 | 3279s
+{
+  "test": {
+    "acc": 0.738,
+    "acc_random_msg": 0.096,
+    "acc_fixed_msg": 0.07,
+    "topsim": 0.3765641181815222,
+    "n_unique_messages": 59
+  },
+  "heldout": {
+    "acc": 0.872,
+    "acc_random_msg": 0.113,
+    "acc_fixed_msg": 0.095,
+    "topsim": 0.32464624075944626,
+    "n_unique_messages": 57
+  },
+  "heldout_vs_test": {
+    "acc": 0.611,
+    "acc_random_msg": 0.088,
+    "acc_fixed_msg": 0.077
+  }
+}
+ hard_distractors   mode  msg_len  n_candidates  no_comm  vocab_size  n_seeds  test_acc_mean  test_acc_std  test_acc_random_msg_mean  test_acc_random_msg_std  test_acc_fixed_msg_mean  test_acc_fixed_msg_std  test_topsim_mean  test_topsim_std  test_n_unique_messages_mean  test_n_unique_messages_std  heldout_acc_mean  heldout_acc_std  heldout_acc_random_msg_mean  heldout_acc_random_msg_std  heldout_acc_fixed_msg_mean  heldout_acc_fixed_msg_std  heldout_topsim_mean  heldout_topsim_std  heldout_n_unique_messages_mean  heldout_n_unique_messages_std  heldout_vs_test_acc_mean  heldout_vs_test_acc_std  heldout_vs_test_acc_random_msg_mean  heldout_vs_test_acc_random_msg_std  heldout_vs_test_acc_fixed_msg_mean  heldout_vs_test_acc_fixed_msg_std
+            False gumbel        3             2    False          10        1          0.945           NaN                     0.508                      NaN                    0.481                     NaN            0.4281              NaN                         25.0                         NaN             0.957              NaN                        0.494                         NaN                       0.494                        NaN               0.3752                 NaN                            24.0                            NaN                     0.943                      NaN                                0.490                                 NaN                               0.514                                NaN
+            False gumbel        3             4    False          10        1          0.944           NaN                     0.232                      NaN                    0.229                     NaN            0.3757              NaN                        154.0                         NaN             0.975              NaN                        0.279                         NaN                       0.275                        NaN               0.3310                 NaN                           122.0                            NaN                     0.942                      NaN                                0.283                                 NaN                               0.314                                NaN
+            False gumbel        3             8    False          10        1          0.884           NaN                     0.140                      NaN                    0.134                     NaN            0.4494              NaN                         59.0                         NaN             0.876              NaN                        0.149                         NaN                       0.143                        NaN               0.4210                 NaN                            52.0                            NaN                     0.854                      NaN                                0.133                                 NaN                               0.112                                NaN
+             True gumbel        3             2    False          10        1          0.905           NaN                     0.524                      NaN                    0.521                     NaN            0.3526              NaN                         37.0                         NaN             0.945              NaN                        0.473                         NaN                       0.482                        NaN               0.3002                 NaN                            36.0                            NaN                     0.928                      NaN                                0.632                                 NaN                               0.667                                NaN
+             True gumbel        3             4    False          10        1          0.846           NaN                     0.240                      NaN                    0.229                     NaN            0.2721              NaN                         41.0                         NaN             0.869              NaN                        0.239                         NaN                       0.242                        NaN               0.2763                 NaN                            44.0                            NaN                     0.844                      NaN                                0.208                                 NaN                               0.196                                NaN
+             True gumbel        3             8    False          10        1          0.738           NaN                     0.096                      NaN                    0.070                     NaN            0.3766              NaN                         59.0                         NaN             0.872              NaN                        0.113                         NaN                       0.095                        NaN               0.3246                 NaN                            57.0                            NaN                     0.611                      NaN                                0.088                                 NaN                               0.077                                NaN
+
+wrote C:\Users\Ali\Desktop\AI Course Project\results\summaries\distractors.csv and distractors_agg.csv
+EXIT 0

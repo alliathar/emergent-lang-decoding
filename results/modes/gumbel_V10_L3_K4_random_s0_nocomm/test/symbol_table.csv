@@ -1,0 +1,4 @@
+position,symbol,count,best_attribute,best_value,p_value_given_symbol,p_value_base_rate
+0,0,1000,shape,circle,0.314,0.314
+1,0,1000,shape,circle,0.314,0.314
+2,0,1000,shape,circle,0.314,0.314

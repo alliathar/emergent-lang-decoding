@@ -1,0 +1,32 @@
+{
+  "run_name": "gumbel_V10_L3_K4_random_s0",
+  "chance": 0.25,
+  "train_time_sec": 700.5,
+  "final_train_acc": 0.93421875,
+  "final_val_acc": 0.963,
+  "attributes": [
+    "shape",
+    "colour",
+    "size",
+    "position"
+  ],
+  "test": {
+    "acc": 0.944,
+    "acc_random_msg": 0.232,
+    "acc_fixed_msg": 0.229,
+    "topsim": 0.3757044306590586,
+    "n_unique_messages": 154
+  },
+  "heldout": {
+    "acc": 0.975,
+    "acc_random_msg": 0.279,
+    "acc_fixed_msg": 0.275,
+    "topsim": 0.33098432036549114,
+    "n_unique_messages": 122
+  },
+  "heldout_vs_test": {
+    "acc": 0.942,
+    "acc_random_msg": 0.283,
+    "acc_fixed_msg": 0.314
+  }
+}

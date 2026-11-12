@@ -1,0 +1,17 @@
+position,symbol,count,best_attribute,best_value,p_value_given_symbol,p_value_base_rate
+0,0,281,position,right,0.6014,0.319
+0,4,150,position,right,1.0,0.319
+0,5,66,position,left,1.0,0.356
+0,6,365,position,left,0.7945,0.356
+0,8,138,position,centre,1.0,0.325
+1,0,181,position,right,0.7348,0.319
+1,4,280,position,right,0.6643,0.319
+1,5,83,position,left,1.0,0.356
+1,6,202,position,left,0.8861,0.356
+1,8,254,position,centre,1.0,0.325
+2,0,120,position,right,0.9917,0.319
+2,3,37,position,left,1.0,0.356
+2,4,324,position,right,0.608,0.319
+2,5,1,colour,blue,1.0,0.245
+2,6,283,position,left,0.6749,0.356
+2,8,235,position,centre,0.9872,0.325

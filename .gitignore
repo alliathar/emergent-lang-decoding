@@ -3,8 +3,7 @@ __pycache__/
 *.pyc
 .venv/
 # Run outputs are big and reproducible; only the sweep summary tables are kept.
-results/*
-!results/summaries/
+
 # Local reference material, not part of our code (third-party repo, proposal with student IDs).
 emergent_comm_rl-master/
 Project Proposal.pdf

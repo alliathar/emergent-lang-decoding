@@ -1,0 +1,32 @@
+{
+  "run_name": "gumbel_V10_L3_K8_hard_s1",
+  "chance": 0.125,
+  "train_time_sec": 3276.6,
+  "final_train_acc": 0.76265625,
+  "final_val_acc": 0.807,
+  "attributes": [
+    "shape",
+    "colour",
+    "size",
+    "position"
+  ],
+  "test": {
+    "acc": 0.802,
+    "acc_random_msg": 0.087,
+    "acc_fixed_msg": 0.073,
+    "topsim": 0.29361122127104916,
+    "n_unique_messages": 86
+  },
+  "heldout": {
+    "acc": 0.81,
+    "acc_random_msg": 0.089,
+    "acc_fixed_msg": 0.106,
+    "topsim": 0.27297715526672967,
+    "n_unique_messages": 84
+  },
+  "heldout_vs_test": {
+    "acc": 0.704,
+    "acc_random_msg": 0.079,
+    "acc_fixed_msg": 0.038
+  }
+}
